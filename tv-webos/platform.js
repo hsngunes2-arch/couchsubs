@@ -440,6 +440,7 @@
       hdmi.stallNote = 'nopic';
       return checkSoon(STALL_CHECK_MS, false);
     }
+    if (hdmi.advances < 3 && video.readyState >= 2) { hdmi.stallNote = 'ignored'; return; }
     // Denetim zaten bekliyorsa ya da kurma sıradaysa art arda gelen olay onu ertelemez.
     if (hdmi.stallTimer !== null || hdmi.pending !== null || hdmi.building !== null) return;
     // Bu pencerede 'stalled' yüzünden yeterince kuruldu: TV olayı sağlam görüntüde de gönderiyor olabilir (0.9.73).
